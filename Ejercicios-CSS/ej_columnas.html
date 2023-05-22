@@ -19,6 +19,23 @@
         a:active{
             font-weight: bold;
         }
+
+        article{
+            column-count: 2;
+            column-gap: 100px;
+            margin: 0 30px
+        }
+
+        a{
+            background-color: #98c3ff;
+            padding: 20px;
+        }
+
+        a:hover{
+            background-color: #3e5fa4;
+            -webkit-transition: background-color 1s linear;
+            transition: background-color 1s linear;
+        }
     </style>
 </head>
 <body>
@@ -31,7 +48,7 @@
     <h3 class="tituloNoticia">CordoBici</h3>
     Publicado el 07/03/2018 en Agropecuarias y Ambiente
     <article>
-        <div>
+        <div class="columna1">
             <p>
                 Un intercambio académico inspiró a Joaquín, Nicolás, Guido y Facundo para elegir el tema de su trabajo final.
                 Dos de ellos estuvieron el año pasado en Sevilla y se quedaron "enamorados" –palabras textuales- de su
@@ -61,7 +78,7 @@
                 de la tesis.
             </p>
         </div>
-        <div class="grid-item">
+        <div class="columna2">
             <p>
                 Gracias a una profunda investigación comercial, sumada a una simulación realizada por un programa llamado
                 anylogic, consiguieron localizar de manera estratégica 19 estaciones con 280 bicicletas, en Nueva Córdoba y
