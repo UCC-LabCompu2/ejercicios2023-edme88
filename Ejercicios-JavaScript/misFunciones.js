@@ -82,3 +82,15 @@ let sumar = () => {
     res =  s1 + s2;
     document.operacionesMat.sum_total.value = res;
 }
+
+/**
+ * Si el campo contiene una letra, blanquea el campo
+ * @method verLetra
+ * @param {string} id - Id del elemento input del html
+ * @param {number/string} value - Contiene el valor del input que ingreso el usuario
+ */
+let verLetra = (id, value) => {
+    if(isNaN(value)){
+        document.getElementById(id).value = "";
+    }
+}
