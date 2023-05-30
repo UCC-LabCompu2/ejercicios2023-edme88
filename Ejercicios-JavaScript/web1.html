@@ -15,6 +15,9 @@
         <p>
             <!--Label es incluido por cuestiones de Accesibilidad-->
             <!--Note que Label y el id del elemento poseen igual nombre-->
+            <!--1) Ejecutar "npm install -g http-server" -->
+            <!--2) Ejecutar "http-server" -->
+            <!--3) Stop server "ctrol C"-->
             <label for="distancia"> Distancia</label> = <input id="distancia" type="text" name="inp_distancia">
             <select name="unidades">
                 <option value="metros">Metros</option>
@@ -22,7 +25,7 @@
                 <option value="pie">Pies</option>
                 <option value="pulgadas">Pulgadas</option>
             </select>
-            <button type="button" onclick="generarUrl()">
+            <button type="button" onclick="guardarLS()">
                 Segunda Web!
             </button>
         </p>

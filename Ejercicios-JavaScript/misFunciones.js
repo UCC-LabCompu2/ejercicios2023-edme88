@@ -7,6 +7,10 @@
 convertirUnidades = (id,valor) => {
     let met, pul, pie, yar;
 
+    if(valor.includes(",")){
+        valor = valor.replace(",", ".");
+    }
+
     if(isNaN(valor)){
         alert("El valor ingresado es incorrecto");
         met = "";
@@ -26,10 +30,10 @@ convertirUnidades = (id,valor) => {
     }else if(id==="yarda"){
         //tarea
     }
-    document.lasUnidades.unid_metro.value = met;
-    document.lasUnidades.unid_pulgada.value = pul;
-    document.lasUnidades.unid_pie.value = pie;
-    document.lasUnidades.unid_yarda.value = yar;
+    document.lasUnidades.unid_metro.value = Math.round(met*100)/100;
+    document.lasUnidades.unid_pulgada.value = Math.round(pul*100)/100;
+    document.lasUnidades.unid_pie.value = Number(pie).toFixed(2);
+    document.lasUnidades.unid_yarda.value = Number(yar).toFixed(2);
 }
 
 /**
@@ -80,7 +84,7 @@ let sumar = () => {
     s1 = +document.operacionesMat.sum_num1.value;
     s2 = +document.operacionesMat.sum_num2.value;
     res =  s1 + s2;
-    document.operacionesMat.sum_total.value = res;
+    document.getElementById("totalS").innerHTML = res;
 }
 
 /**
@@ -92,5 +96,86 @@ let sumar = () => {
 let verLetra = (id, value) => {
     if(isNaN(value)){
         document.getElementById(id).value = "";
+    }
+}
+
+let generarUrl = () => {
+    const dist = document.getElementById("distancia").value;
+    const uni = document.getElementsByName("unidades")[0].value;
+
+    const urlCompl = `segundaWeb.html#${dist}#${uni}`;
+    window.open(urlCompl);
+}
+
+let cargarValor = () => {
+    let urlCompleta = window.location.href;
+    console.log(urlCompleta);
+    urlCompleta = urlCompleta.split("#");
+
+    const distancia = urlCompleta[1];
+    const unidad = urlCompleta[2];
+    document.getElementById("dist").value = `${distancia} ${unidad}`;
+}
+
+let guardarLS = () => {
+    let dist = document.getElementById("distancia").value;
+    let uni = document.getElementsByName("unidades")[0].value;
+
+    console.log("Guarde "+dist);
+    console.log("Guarde "+uni);
+    localStorage.setItem("distanciaLS", dist);
+    localStorage.setItem("unidadLS", uni);
+    window.open("web2.html", "_self");
+}
+
+let cargarLS = () => {
+    console.log("Se cargara el Local Storage")
+
+        let distancia = localStorage.getItem("distanciaLS");
+        let unidad = localStorage.getItem("unidadLS");
+        console.log("Lei " + distancia);
+        console.log("Lei " + unidad);
+        document.getElementById("dist").innerHTML = `${distancia} ${unidad}`;
+}
+
+let dibujarCirculoCuadrado = () => {
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let xMax = canvas.width;
+    let yMax = canvas.height;
+    ctx.fillStyle = "#333";
+    //Dibujar rectangulo
+    let margen = 15;
+    ctx.fillRect(0+margen, yMax-120-margen, 130, 120);
+
+    //Dibujar Circulo
+    ctx.arc(xMax/2, yMax/2, 100, 0, 2 * Math.PI);
+    ctx.stroke(); //Dibujo de los bordes del circulo
+    ctx.fill(); //Pinto el circulo por dentro
+}
+
+let limpiarCanvas = () => {
+    let canvas = document.getElementById("myCanvas");
+    canvas.width = canvas.width;
+}
+
+var bandera;
+let dibujar = (event) => {
+    /* Las funciones de flecha no tienen su propio this o event,
+    *  por lo que debes pasar el objeto event como parámetro a la función para poder acceder a él. */
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+
+    let posX = event.clientX;
+    let posY = event.clientY;
+    console.log(posX, posY);
+
+    canvas.onmousedown = function (){bandera=true};
+    canvas.onmouseup = function (){bandera=false};
+
+    if(bandera){
+        ctx.fillRect(posX-10, posY-121, 5, 5);
+        ctx.fill;
     }
 }
