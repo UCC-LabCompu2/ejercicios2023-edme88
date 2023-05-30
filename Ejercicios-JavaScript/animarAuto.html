@@ -8,16 +8,13 @@
     <script type="text/javascript" src="misFunciones.js"></script>
 </head>
 
-<body>
-<h1>Canvas 2</h1>
-<p>Ejercicio: Dibujar un cuadriculado en un canvas. La función debe llamarse al presionar el boton.</p>
-<button onclick="dibujarCuadriculado()">
-    Dibujar Cuadriculado
-</button>
-<br>
-<canvas id="myCanvas" class="ejer" width="1000px" height="600px">
+<body onload="setInterval(animarAuto, 20)">
+<h1>Canvas 4: Animar Auto</h1>
+
+<canvas id="myCanvas" class="ejer" width="1000px" height="500px">
     Tu navegador no soporta el tag de HTML5 canvas.
 </canvas>
+
 
 </body>
 </html>
