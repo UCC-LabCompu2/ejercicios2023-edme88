@@ -162,8 +162,8 @@ let limpiarCanvas = () => {
 
 var bandera;
 let dibujar = (event) => {
-    /* Las funciones de flecha no tienen su propio this o event,
-    *  por lo que debes pasar el objeto event como parámetro a la función para poder acceder a él. */
+ // Las funciones de flecha no tienen su propio this o event,
+ // por lo que debes pasar el objeto event como parámetro a la función para poder acceder a él.
     let canvas = document.getElementById("myCanvas");
     let ctx = canvas.getContext("2d");
 
@@ -178,4 +178,36 @@ let dibujar = (event) => {
         ctx.fillRect(posX-10, posY-121, 5, 5);
         ctx.fill;
     }
+}
+
+let cargarListeners = () => {
+    document.getElementById("myCanvas").addEventListener("mousemove", function(event) {
+        /*
+        * Al no existir declarada ninguna variable event lo que está haciendo el navegador es acceder a windows.event.
+        * El uso de esta propiedad está desaconsejado.
+        * La solución más directa es declarar la variable event en la función anónima
+        * */
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        let posX = event.clientX;
+        let posY = event.clientY;
+        console.log(posX, posY);
+
+        canvas.onmousedown = function () {
+            bandera = true
+        };
+        canvas.onmouseup = function () {
+            bandera = false
+        };
+
+        if (bandera) {
+            ctx.fillRect(posX - 10, posY - 121, 5, 5);
+            ctx.fill;
+        }
+    });
+}
+
+let cargarListenersEjemplo = () => {
+    document.getElementById("myCanvas").addEventListener("mousemove", dibujar);
 }
