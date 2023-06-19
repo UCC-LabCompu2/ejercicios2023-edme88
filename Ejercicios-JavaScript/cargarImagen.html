@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onLoad="cargarImg()">
+<img id="imagen-visualizada" src="" alt="Imagen">
+</body>
+
+<script>
+    function cargarImg() {
+        var imagenVisualizada = document.getElementById('imagen-visualizada');
+
+        // Obtener el contenido de la imagen almacenada en el LocalStorage
+        var imageContent = localStorage.getItem('imagen');
+
+        if (imageContent) {
+            // Asignar el contenido de la imagen como fuente de la etiqueta <img>
+            imagenVisualizada.src = imageContent;
+
+            console.log('Imagen cargada desde el LocalStorage');
+        }
+    }
+</script>
+
+</html>
